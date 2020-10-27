@@ -67,6 +67,7 @@ namespace EnumTest.Controllers
 
         private void SetCulture(string name)
         {
+            _logger.LogInformation($"Thread culture set to: {name}");
             //usually this setting will put on baseController, get user culture from Claims, but this demo didn't using identity, so put here.
             Thread.CurrentThread.CurrentCulture = new CultureInfo(name);
             Thread.CurrentThread.CurrentUICulture = Thread.CurrentThread.CurrentCulture;

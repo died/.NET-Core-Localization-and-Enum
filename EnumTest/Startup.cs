@@ -16,11 +16,6 @@ namespace EnumTest
         }
 
         public IConfiguration Configuration { get; }
-        private readonly CultureInfo[] _supportedCultures = {
-            new CultureInfo("en-US"),
-            new CultureInfo("zh-TW"),
-            new CultureInfo("ja-JP")
-        };
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -28,9 +23,14 @@ namespace EnumTest
             //set Support Cultures and default
             services.Configure<RequestLocalizationOptions>(options =>
             {
+                var supportedCultures = new[]{
+                    new CultureInfo("en-US"),
+                    new CultureInfo("zh-TW"),
+                    new CultureInfo("ja-JP")
+                };
                 options.DefaultRequestCulture = new RequestCulture("en-US");
-                options.SupportedCultures = _supportedCultures;
-                options.SupportedUICultures = _supportedCultures;
+                options.SupportedCultures = supportedCultures;
+                options.SupportedUICultures = supportedCultures;
             });
             //set resource path
             services.AddLocalization(options => options.ResourcesPath = "Resources");
